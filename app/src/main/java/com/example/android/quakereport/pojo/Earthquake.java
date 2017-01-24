@@ -9,6 +9,15 @@ public class Earthquake {
     private String mLocation;
     private String mDate;
 
+    public Earthquake() {
+    }
+
+    public Earthquake(Double magnitude, String location, String date) {
+        mMagnitude = magnitude;
+        mLocation = location;
+        mDate = date;
+    }
+
     public Double getMagnitude() {
         return mMagnitude;
     }

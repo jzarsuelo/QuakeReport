@@ -37,39 +37,19 @@ public class EarthquakeActivity extends AppCompatActivity {
         ArrayList<Earthquake> earthquakes = new ArrayList<>();
 
         // Create a fake list of earthquake locations.
-        Earthquake earthquake = new Earthquake();
-        earthquake.setMagnitude(3.0);
-        earthquake.setLocation("Mexico");
-        earthquake.setDate("Jan 1, 1988");
-
+        Earthquake earthquake = new Earthquake(3.0, "Mexico", "Jan 1, 1988");
         earthquakes.add(earthquake);
 
-        earthquake = new Earthquake();
-        earthquake.setMagnitude(4.5);
-        earthquake.setLocation("California");
-        earthquake.setDate("July 8, 2003");
-
+        earthquake = new Earthquake(4.5, "California", "July 8, 2003");
         earthquakes.add(earthquake);
 
-        earthquake = new Earthquake();
-        earthquake.setMagnitude(2.8);
-        earthquake.setLocation("Texas");
-        earthquake.setDate("Sept 14, 1994");
-
+        earthquake = new Earthquake(2.8, "Texas", "Sept 14, 1994");
         earthquakes.add(earthquake);
 
-        earthquake = new Earthquake();
-        earthquake.setMagnitude(2.8);
-        earthquake.setLocation("Las Vegas");
-        earthquake.setDate("Aug 2, 2004");
-
+        earthquake = new Earthquake(3.2, "Las Vegas", "Aug 2, 2004");
         earthquakes.add(earthquake);
 
-        earthquake = new Earthquake();
-        earthquake.setMagnitude(3.3);
-        earthquake.setLocation("Utah");
-        earthquake.setDate("Feb 23, 2001");
-
+        earthquake = new Earthquake(3.3, "Utah", "Feb 23, 2001");
         earthquakes.add(earthquake);
 
         // Find a reference to the {@link ListView} in the layout
