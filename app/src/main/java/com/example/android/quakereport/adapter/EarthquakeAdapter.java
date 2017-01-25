@@ -58,8 +58,13 @@ public class EarthquakeAdapter extends ArrayAdapter<Earthquake> {
         TextView magnitudeTextView = (TextView) listItemView.findViewById(R.id.magnitudeTextView);
         magnitudeTextView.setText( earthquake.getMagnitude().toString() );
 
-        TextView locationTextView = (TextView) listItemView.findViewById(R.id.locationTextView);
-        locationTextView.setText( earthquake.getLocation() );
+        String locationOffset = getLocationOffset(earthquake.getLocation());
+        TextView locationOffsetTextView = (TextView) listItemView.findViewById(R.id.locationOffsetTextView);
+        locationOffsetTextView.setText( locationOffset );
+
+        String primaryLocation = getPrimaryLocation(earthquake.getLocation());
+        TextView primaryLocationTextView = (TextView) listItemView.findViewById(R.id.primarylocationTextView);
+        primaryLocationTextView.setText( primaryLocation );
 
         Date dateObject = new Date(earthquake.getTimeInMilliseconds());
 
@@ -90,5 +95,29 @@ public class EarthquakeAdapter extends ArrayAdapter<Earthquake> {
     private String formatTime(Date dateObject) {
         SimpleDateFormat formatter = new SimpleDateFormat("h:mm a");
         return formatter.format(dateObject);
+    }
+
+    /**
+     * Return the proximity location based on the location string
+     */
+    private String getLocationOffset(String location) {
+        int indexOf = location.indexOf("of");
+        if (indexOf > -1) {
+            // (+3) to include chars (of )
+            return location.substring(0, indexOf + 3);
+        }
+        return "Near the";
+    }
+
+    /**
+     * Return the primary location based on the location string
+     */
+    private String getPrimaryLocation(String location) {
+        int indexOf = location.indexOf("of");
+        if (indexOf > -1) {
+            // (+2) to exlude chars (of )
+            return location.substring(indexOf + 2);
+        }
+        return location;
     }
 }

@@ -16,7 +16,15 @@
         tools:text="3.5"/>
 
     <TextView
-        android:id="@+id/locationTextView"
+        android:id="@+id/locationOffsetTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        tools:text="Mexico"/>
+
+    <TextView
+        android:id="@+id/primarylocationTextView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
