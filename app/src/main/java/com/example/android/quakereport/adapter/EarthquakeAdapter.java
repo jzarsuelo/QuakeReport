@@ -10,6 +10,7 @@ import android.widget.TextView;
 import com.example.android.quakereport.R;
 import com.example.android.quakereport.pojo.Earthquake;
 
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -119,5 +120,10 @@ public class EarthquakeAdapter extends ArrayAdapter<Earthquake> {
             return location.substring(indexOf + 2);
         }
         return location;
+    }
+
+    private String formatMagnitude(Double magnitude) {
+        DecimalFormat formatter = new DecimalFormat("0.0");
+        return formatter.format(magnitude);
     }
 }
