@@ -49,7 +49,20 @@ public final class QueryUtils {
         // Catch the exception so the app doesn't crash, and print the error message to the logs.
         try {
 
+            JSONObject root = new JSONObject(SAMPLE_JSON_RESPONSE);
+            JSONArray features = root.getJSONArray("features");
             // TODO: Parse the response given by the SAMPLE_JSON_RESPONSE string and
+            for(int i = 0 ; i < features.length() ; i++) {
+                JSONObject feature = features.getJSONObject(i);
+                JSONObject properties = feature.getJSONObject("properties");
+
+                Earthquake earthquake = new Earthquake(
+                        properties.getDouble("mag"),
+                        properties.getString("place"),
+                        properties.getString("time"));
+
+                earthquakes.add(earthquake);
+            }
             // build up a list of Earthquake objects with the corresponding data.
 
         } catch (JSONException e) {
