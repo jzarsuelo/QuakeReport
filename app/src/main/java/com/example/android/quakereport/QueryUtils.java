@@ -50,11 +50,11 @@ public final class QueryUtils {
         try {
 
             JSONObject root = new JSONObject(SAMPLE_JSON_RESPONSE);
-            JSONArray features = root.getJSONArray("features");
+            JSONArray earthquakeArray = root.getJSONArray("features");
             // TODO: Parse the response given by the SAMPLE_JSON_RESPONSE string and
-            for(int i = 0 ; i < features.length() ; i++) {
-                JSONObject feature = features.getJSONObject(i);
-                JSONObject properties = feature.getJSONObject("properties");
+            for(int i = 0 ; i < earthquakeArray.length() ; i++) {
+                JSONObject currentEarthquake = earthquakeArray.getJSONObject(i);
+                JSONObject properties = currentEarthquake.getJSONObject("properties");
 
                 Earthquake earthquake = new Earthquake(
                         properties.getDouble("mag"),
