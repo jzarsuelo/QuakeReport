@@ -55,9 +55,10 @@ public class EarthquakeAdapter extends ArrayAdapter<Earthquake> {
 
         Earthquake earthquake = getItem(position);
 
+        String fomattedMagnitude = formatMagnitude(earthquake.getMagnitude());
         // Initialize the View
         TextView magnitudeTextView = (TextView) listItemView.findViewById(R.id.magnitudeTextView);
-        magnitudeTextView.setText( earthquake.getMagnitude().toString() );
+        magnitudeTextView.setText( fomattedMagnitude );
 
         String locationOffset = getLocationOffset(earthquake.getLocation());
         TextView locationOffsetTextView = (TextView) listItemView.findViewById(R.id.locationOffsetTextView);
@@ -122,6 +123,9 @@ public class EarthquakeAdapter extends ArrayAdapter<Earthquake> {
         return location;
     }
 
+    /**
+     * Return the formatted string (0.0 - one decimal place) of magnitude
+     */
     private String formatMagnitude(Double magnitude) {
         DecimalFormat formatter = new DecimalFormat("0.0");
         return formatter.format(magnitude);
