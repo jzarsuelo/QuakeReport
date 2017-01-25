@@ -8,27 +8,32 @@
               android:gravity="center_vertical">
 
     <TextView
+        android:background="@drawable/magnitude_circle"
         android:id="@+id/magnitudeTextView"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:layout_gravity="center_vertical"
+        android:fontFamily="sans-serif-medium"
+        android:gravity="center"
+        android:textColor="@android:color/white"
+        android:textSize="16sp"
         tools:text="3.5"/>
 
     <TextView
         android:id="@+id/locationOffsetTextView"
+        android:layout_marginLeft="16dp"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        tools:text="Mexico"/>
+        android:textSize="16sp"
+        tools:text="30km S of"/>
 
     <TextView
         android:id="@+id/primarylocationTextView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textSize="16sp"
         tools:text="Mexico"/>
 
     <TextView
@@ -36,7 +41,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textSize="16sp"
         tools:text="Jan 1, 1988"/>
 
     <TextView
@@ -44,6 +49,6 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textSize="16sp"
         tools:text="7:00 AM"/>
 </LinearLayout>

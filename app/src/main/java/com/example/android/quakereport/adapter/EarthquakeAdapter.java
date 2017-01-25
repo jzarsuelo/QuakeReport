@@ -1,6 +1,8 @@
 package com.example.android.quakereport.adapter;
 
 import android.content.Context;
+import android.graphics.drawable.GradientDrawable;
+import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -59,6 +61,9 @@ public class EarthquakeAdapter extends ArrayAdapter<Earthquake> {
         // Initialize the View
         TextView magnitudeTextView = (TextView) listItemView.findViewById(R.id.magnitudeTextView);
         magnitudeTextView.setText( fomattedMagnitude );
+        int magnitudeColor = getMagnitudeColor(earthquake.getMagnitude());
+        GradientDrawable magnitudeCircle = (GradientDrawable) magnitudeTextView.getBackground();
+        magnitudeCircle.setColor(magnitudeColor);
 
         String locationOffset = getLocationOffset(earthquake.getLocation());
         TextView locationOffsetTextView = (TextView) listItemView.findViewById(R.id.locationOffsetTextView);
@@ -129,5 +134,31 @@ public class EarthquakeAdapter extends ArrayAdapter<Earthquake> {
     private String formatMagnitude(Double magnitude) {
         DecimalFormat formatter = new DecimalFormat("0.0");
         return formatter.format(magnitude);
+    }
+
+    private int getMagnitudeColor(Double magnitude) {
+        int color = R.color.magnitude1;
+
+        if (magnitude >= 2 && magnitude <= 3) {
+            color = R.color.magnitude2;
+        } else if (magnitude >= 3 && magnitude <= 4) {
+            color = R.color.magnitude3;
+        } else if (magnitude >= 4 && magnitude <= 5) {
+            color = R.color.magnitude4;
+        } else if (magnitude >= 5 && magnitude <= 6) {
+            color = R.color.magnitude5;
+        } else if (magnitude >= 6 && magnitude <= 7) {
+            color = R.color.magnitude6;
+        } else if (magnitude >= 7 && magnitude <= 8) {
+            color = R.color.magnitude7;
+        } else if (magnitude >= 8 && magnitude <= 9) {
+            color = R.color.magnitude8;
+        } else if (magnitude >= 9 && magnitude <= 10) {
+            color = R.color.magnitude9;
+        } else if (magnitude >= 10) {
+            color = R.color.magnitude10plus;
+        }
+
+        return ContextCompat.getColor(getContext(), color);
     }
 }
