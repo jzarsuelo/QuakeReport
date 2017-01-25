@@ -11,7 +11,7 @@
         android:id="@+id/magnitudeTextView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_weight="0.8"
+        android:layout_weight="1"
         android:textAppearance="?android:attr/textAppearanceMedium"
         tools:text="3.5"/>
 
@@ -19,7 +19,7 @@
         android:id="@+id/locationTextView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_weight="1.2"
+        android:layout_weight="1"
         android:textAppearance="?android:attr/textAppearanceMedium"
         tools:text="Mexico"/>
 
@@ -30,4 +30,12 @@
         android:layout_weight="1"
         android:textAppearance="?android:attr/textAppearanceMedium"
         tools:text="Jan 1, 1988"/>
+
+    <TextView
+        android:id="@+id/timeTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        tools:text="7:00 AM"/>
 </LinearLayout>

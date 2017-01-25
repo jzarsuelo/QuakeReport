@@ -10,7 +10,9 @@ import android.widget.TextView;
 import com.example.android.quakereport.R;
 import com.example.android.quakereport.pojo.Earthquake;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  * {@link EarthquakeAdapter} is an {@link ArrayAdapter} that provides the layout for each item
@@ -59,9 +61,34 @@ public class EarthquakeAdapter extends ArrayAdapter<Earthquake> {
         TextView locationTextView = (TextView) listItemView.findViewById(R.id.locationTextView);
         locationTextView.setText( earthquake.getLocation() );
 
+        Date dateObject = new Date(earthquake.getTimeInMilliseconds());
+
         TextView dateTextView = (TextView) listItemView.findViewById(R.id.dateTextView);
-        dateTextView.setText( earthquake.getDate() );
+        dateTextView.setText( formatDate(dateObject) );
+
+        TextView timeTextView = (TextView) listItemView.findViewById(R.id.timeTextView);
+        timeTextView.setText( formatTime(dateObject) );
 
         return listItemView;
+    }
+
+    /**
+     * Return the formatted date string (eg. Jan 1, 2000)
+     * @param dateObject Date object to format
+     * @return           Formatted string value
+     */
+    private String formatDate(Date dateObject) {
+        SimpleDateFormat formatter = new SimpleDateFormat("MMM d, yyyy");
+        return formatter.format(dateObject);
+    }
+
+    /**
+     * Return the formatted time string (eg. 7:00 AM)
+     * @param dateObject Date object to format
+     * @return           Formatted string value
+     */
+    private String formatTime(Date dateObject) {
+        SimpleDateFormat formatter = new SimpleDateFormat("h:mm a");
+        return formatter.format(dateObject);
     }
 }

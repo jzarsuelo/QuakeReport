@@ -7,15 +7,15 @@ package com.example.android.quakereport.pojo;
 public class Earthquake {
     private Double mMagnitude;
     private String mLocation;
-    private String mDate;
+    private Long mTimeInMilliseconds;
 
     public Earthquake() {
     }
 
-    public Earthquake(Double magnitude, String location, String date) {
+    public Earthquake(Double magnitude, String location, Long timeInMilliseconds) {
         mMagnitude = magnitude;
         mLocation = location;
-        mDate = date;
+        mTimeInMilliseconds = timeInMilliseconds;
     }
 
     public Double getMagnitude() {
@@ -34,11 +34,11 @@ public class Earthquake {
         mLocation = location;
     }
 
-    public String getDate() {
-        return mDate;
+    public Long getTimeInMilliseconds() {
+        return mTimeInMilliseconds;
     }
 
-    public void setDate(String date) {
-        mDate = date;
+    public void setTimeInMilliseconds(Long timeInMilliseconds) {
+        mTimeInMilliseconds = timeInMilliseconds;
     }
 }
