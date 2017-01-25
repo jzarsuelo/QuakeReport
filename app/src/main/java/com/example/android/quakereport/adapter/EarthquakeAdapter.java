@@ -59,26 +59,26 @@ public class EarthquakeAdapter extends ArrayAdapter<Earthquake> {
 
         String fomattedMagnitude = formatMagnitude(earthquake.getMagnitude());
         // Initialize the View
-        TextView magnitudeTextView = (TextView) listItemView.findViewById(R.id.magnitudeTextView);
+        TextView magnitudeTextView = (TextView) listItemView.findViewById(R.id.magnitude);
         magnitudeTextView.setText( fomattedMagnitude );
         int magnitudeColor = getMagnitudeColor(earthquake.getMagnitude());
         GradientDrawable magnitudeCircle = (GradientDrawable) magnitudeTextView.getBackground();
         magnitudeCircle.setColor(magnitudeColor);
 
         String locationOffset = getLocationOffset(earthquake.getLocation());
-        TextView locationOffsetTextView = (TextView) listItemView.findViewById(R.id.locationOffsetTextView);
+        TextView locationOffsetTextView = (TextView) listItemView.findViewById(R.id.location_offset);
         locationOffsetTextView.setText( locationOffset );
 
         String primaryLocation = getPrimaryLocation(earthquake.getLocation());
-        TextView primaryLocationTextView = (TextView) listItemView.findViewById(R.id.primarylocationTextView);
+        TextView primaryLocationTextView = (TextView) listItemView.findViewById(R.id.primary_location);
         primaryLocationTextView.setText( primaryLocation );
 
         Date dateObject = new Date(earthquake.getTimeInMilliseconds());
 
-        TextView dateTextView = (TextView) listItemView.findViewById(R.id.dateTextView);
+        TextView dateTextView = (TextView) listItemView.findViewById(R.id.date);
         dateTextView.setText( formatDate(dateObject) );
 
-        TextView timeTextView = (TextView) listItemView.findViewById(R.id.timeTextView);
+        TextView timeTextView = (TextView) listItemView.findViewById(R.id.time);
         timeTextView.setText( formatTime(dateObject) );
 
         return listItemView;
@@ -122,8 +122,8 @@ public class EarthquakeAdapter extends ArrayAdapter<Earthquake> {
     private String getPrimaryLocation(String location) {
         int indexOf = location.indexOf("of");
         if (indexOf > -1) {
-            // (+2) to exlude chars (of )
-            return location.substring(indexOf + 2);
+            // (+3 to exlude chars (of )
+            return location.substring(indexOf + 3);
         }
         return location;
     }
