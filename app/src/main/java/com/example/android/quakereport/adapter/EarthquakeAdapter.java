@@ -136,29 +136,47 @@ public class EarthquakeAdapter extends ArrayAdapter<Earthquake> {
         return formatter.format(magnitude);
     }
 
+    /**
+     * Return the a resource color based on the magnitude of the earthquake
+     */
     private int getMagnitudeColor(Double magnitude) {
-        int color = R.color.magnitude1;
+        int colorResourceId;
+        int magnitudeInt = (int) Math.floor(magnitude);
 
-        if (magnitude >= 2 && magnitude <= 3) {
-            color = R.color.magnitude2;
-        } else if (magnitude >= 3 && magnitude <= 4) {
-            color = R.color.magnitude3;
-        } else if (magnitude >= 4 && magnitude <= 5) {
-            color = R.color.magnitude4;
-        } else if (magnitude >= 5 && magnitude <= 6) {
-            color = R.color.magnitude5;
-        } else if (magnitude >= 6 && magnitude <= 7) {
-            color = R.color.magnitude6;
-        } else if (magnitude >= 7 && magnitude <= 8) {
-            color = R.color.magnitude7;
-        } else if (magnitude >= 8 && magnitude <= 9) {
-            color = R.color.magnitude8;
-        } else if (magnitude >= 9 && magnitude <= 10) {
-            color = R.color.magnitude9;
-        } else if (magnitude >= 10) {
-            color = R.color.magnitude10plus;
+        switch ( magnitudeInt ){
+            case 0:
+            case 1:
+                colorResourceId = R.color.magnitude1;
+                break;
+            case 2:
+                colorResourceId = R.color.magnitude2;
+                break;
+            case 3:
+                colorResourceId = R.color.magnitude3;
+                break;
+            case 4:
+                colorResourceId = R.color.magnitude4;
+                break;
+            case 5:
+                colorResourceId = R.color.magnitude5;
+                break;
+            case 6:
+                colorResourceId = R.color.magnitude6;
+                break;
+            case 7:
+                colorResourceId = R.color.magnitude7;
+                break;
+            case 8:
+                colorResourceId = R.color.magnitude8;
+                break;
+            case 9:
+                colorResourceId = R.color.magnitude9;
+                break;
+            default:
+                colorResourceId = R.color.magnitude10plus;
+                break;
         }
 
-        return ContextCompat.getColor(getContext(), color);
+        return ContextCompat.getColor(getContext(), colorResourceId);
     }
 }
