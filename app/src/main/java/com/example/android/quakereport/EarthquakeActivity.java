@@ -19,45 +19,36 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.app.LoaderManager;
+import android.content.Loader;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.example.android.quakereport.adapter.EarthquakeAdapter;
+import com.example.android.quakereport.loader.EarthquakeLoader;
 import com.example.android.quakereport.pojo.Earthquake;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
 
-public class EarthquakeActivity extends AppCompatActivity {
+public class EarthquakeActivity extends AppCompatActivity
+        implements LoaderManager.LoaderCallbacks<List<Earthquake>>{
 
     public static final String LOG_TAG = EarthquakeActivity.class.getName();
     private ListView mEarthquakeListView;
     private EarthquakeAdapter mEarthquakeAdapter;
+
+    private static final int EARTHQUAKE_LOADER_ID = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.earthquake_activity);
 
-        final String apiUrl = getString(R.string.api_url);
-
-        EarthquakeTask earthquakeTask = new EarthquakeTask();
-        earthquakeTask.execute(apiUrl);
+        // Execute loader
+        getLoaderManager().initLoader(EARTHQUAKE_LOADER_ID, null, this);
 
         // Find a reference to the {@link ListView} in the layout
         mEarthquakeListView = (ListView) findViewById(R.id.list);
@@ -86,29 +77,20 @@ public class EarthquakeActivity extends AppCompatActivity {
         });
     }
 
-    /**
-     * AsyncTask to fetch the data from the USGS API
-     */
-    private class EarthquakeTask extends AsyncTask<String, Void, List<Earthquake>>{
-
-        private final String TAG = EarthquakeTask.class.getSimpleName();
-
-        @Override
-        protected List<Earthquake> doInBackground(String... strings) {
-            if ( strings==null || strings[0]==null ) {
-                return new ArrayList<>();
-            }
-
-            return QueryUtils.fetchEarthquakeData(strings[0]);
-        }
-
-        @Override
-        protected void onPostExecute(List<Earthquake> earthquakes) {
-            mEarthquakeAdapter.clear();
-            mEarthquakeAdapter.addAll(earthquakes);
-        }
-
-
-
+    @Override
+    public Loader<List<Earthquake>> onCreateLoader(int id, Bundle args) {
+        return new EarthquakeLoader(this);
     }
+
+    @Override
+    public void onLoadFinished(Loader<List<Earthquake>> loader, List<Earthquake> data) {
+        mEarthquakeAdapter.clear();
+        mEarthquakeAdapter.addAll(data);
+    }
+
+    @Override
+    public void onLoaderReset(Loader<List<Earthquake>> loader) {
+        mEarthquakeAdapter.clear();
+    }
+
 }
