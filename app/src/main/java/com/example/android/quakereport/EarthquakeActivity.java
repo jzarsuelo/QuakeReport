@@ -22,9 +22,11 @@ import android.os.Bundle;
 import android.app.LoaderManager;
 import android.content.Loader;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.example.android.quakereport.adapter.EarthquakeAdapter;
 import com.example.android.quakereport.loader.EarthquakeLoader;
@@ -55,6 +57,9 @@ public class EarthquakeActivity extends AppCompatActivity
 
         // Create a new {@link ArrayAdapter} of earthquakes
         mEarthquakeAdapter = new EarthquakeAdapter(this, new ArrayList<Earthquake>());
+
+        TextView emptyListTextView = (TextView) findViewById(R.id.list_empty);
+        mEarthquakeListView.setEmptyView(emptyListTextView);
 
         // Set the mEarthquakeAdapter on the {@link ListView}
         // so the list can be populated in the user interface

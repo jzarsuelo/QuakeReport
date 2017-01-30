@@ -16,4 +16,5 @@
 <resources>
     <string name="app_name">Quake Report</string>
     <string name="api_url">http://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&amp;eventtype=earthquake&amp;orderby=time&amp;minmag=6&amp;limit=10</string>
+    <string name="empty_list">No earthquake found.</string>
 </resources>
