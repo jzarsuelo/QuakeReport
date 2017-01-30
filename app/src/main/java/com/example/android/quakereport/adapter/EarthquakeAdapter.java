@@ -16,6 +16,7 @@ import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * {@link EarthquakeAdapter} is an {@link ArrayAdapter} that provides the layout for each item
@@ -30,7 +31,7 @@ public class EarthquakeAdapter extends ArrayAdapter<Earthquake> {
      * @param context     Used to inflate the layout
      * @param earthquakes List of Earthquake object to display in a list
      */
-    public EarthquakeAdapter(Context context, ArrayList<Earthquake> earthquakes) {
+    public EarthquakeAdapter(Context context, List<Earthquake> earthquakes) {
         // Initialize the parent class by passing the context and earthquakes (data)
         // The second argument is layout to be used by the ArrayAdapter, since
         // EarthquakeAdapter is a custom adapter and it will not be used by the
