@@ -51,11 +51,6 @@ public class EarthquakeActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.earthquake_activity);
 
-        // Execute loader
-        getLoaderManager().initLoader(EARTHQUAKE_LOADER_ID, null, this);
-
-
-
         // Find a reference to the {@link ListView} in the layout
         mEarthquakeListView = (ListView) findViewById(R.id.list);
 
@@ -64,6 +59,13 @@ public class EarthquakeActivity extends AppCompatActivity
 
         mEmptyListTextView = (TextView) findViewById(R.id.list_empty);
         mEarthquakeListView.setEmptyView(mEmptyListTextView);
+
+        if (ConnectivityUtil.isConnected(this)) {
+            // Execute loader
+            getLoaderManager().initLoader(EARTHQUAKE_LOADER_ID, null, this);
+        } else {
+            showEmptyView();
+        }
 
         // Set the mEarthquakeAdapter on the {@link ListView}
         // so the list can be populated in the user interface
@@ -93,10 +95,7 @@ public class EarthquakeActivity extends AppCompatActivity
 
     @Override
     public void onLoadFinished(Loader<List<Earthquake>> loader, List<Earthquake> data) {
-        View progressBar = findViewById(R.id.loading_spinner);
-        progressBar.setVisibility(View.GONE);
-
-        mEmptyListTextView.setText(R.string.empty_list);
+        showEmptyView();
 
         mEarthquakeAdapter.clear();
         if (data != null && !data.isEmpty()) {
@@ -110,4 +109,11 @@ public class EarthquakeActivity extends AppCompatActivity
         mEarthquakeAdapter.clear();
     }
 
+
+    private void showEmptyView() {
+        View progressBar = findViewById(R.id.loading_spinner);
+        progressBar.setVisibility(View.GONE);
+
+        mEmptyListTextView.setText(R.string.empty_list);
+    }
 }
