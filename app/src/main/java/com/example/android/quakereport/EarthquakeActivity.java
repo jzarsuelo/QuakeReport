@@ -26,6 +26,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.android.quakereport.adapter.EarthquakeAdapter;
@@ -39,10 +40,11 @@ public class EarthquakeActivity extends AppCompatActivity
         implements LoaderManager.LoaderCallbacks<List<Earthquake>>{
 
     public static final String LOG_TAG = EarthquakeActivity.class.getName();
+    private static final int EARTHQUAKE_LOADER_ID = 0;
+
     private ListView mEarthquakeListView;
     private EarthquakeAdapter mEarthquakeAdapter;
-
-    private static final int EARTHQUAKE_LOADER_ID = 0;
+    private TextView mEmptyListTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,14 +54,16 @@ public class EarthquakeActivity extends AppCompatActivity
         // Execute loader
         getLoaderManager().initLoader(EARTHQUAKE_LOADER_ID, null, this);
 
+
+
         // Find a reference to the {@link ListView} in the layout
         mEarthquakeListView = (ListView) findViewById(R.id.list);
 
         // Create a new {@link ArrayAdapter} of earthquakes
         mEarthquakeAdapter = new EarthquakeAdapter(this, new ArrayList<Earthquake>());
 
-        TextView emptyListTextView = (TextView) findViewById(R.id.list_empty);
-        mEarthquakeListView.setEmptyView(emptyListTextView);
+        mEmptyListTextView = (TextView) findViewById(R.id.list_empty);
+        mEarthquakeListView.setEmptyView(mEmptyListTextView);
 
         // Set the mEarthquakeAdapter on the {@link ListView}
         // so the list can be populated in the user interface
@@ -89,8 +93,16 @@ public class EarthquakeActivity extends AppCompatActivity
 
     @Override
     public void onLoadFinished(Loader<List<Earthquake>> loader, List<Earthquake> data) {
+        View progressBar = findViewById(R.id.loading_spinner);
+        progressBar.setVisibility(View.GONE);
+
+        mEmptyListTextView.setText(R.string.empty_list);
+
         mEarthquakeAdapter.clear();
-        mEarthquakeAdapter.addAll(data);
+        if (data != null && !data.isEmpty()) {
+            mEarthquakeAdapter.addAll(data);
+        }
+
     }
 
     @Override
