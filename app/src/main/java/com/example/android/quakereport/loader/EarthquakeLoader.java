@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.AsyncTaskLoader;
 import android.util.Log;
 
+import com.example.android.quakereport.EarthquakeActivity;
 import com.example.android.quakereport.QueryUtils;
 import com.example.android.quakereport.R;
 import com.example.android.quakereport.pojo.Earthquake;
@@ -16,17 +17,17 @@ import java.util.List;
  */
 public class EarthquakeLoader extends AsyncTaskLoader<List<Earthquake>> {
 
-    final String API_URL;
     private final static String LOG_TAG = EarthquakeLoader.class.getSimpleName();
+    private final String mApiUrl;
 
-    public EarthquakeLoader(Context context) {
+    public EarthquakeLoader(Context context, String apiUrl) {
         super(context);
-        API_URL = context.getString(R.string.api_url);
+        mApiUrl = apiUrl;
     }
 
     @Override
     public List<Earthquake> loadInBackground() {
-        return QueryUtils.fetchEarthquakeData(API_URL);
+        return QueryUtils.fetchEarthquakeData(mApiUrl);
     }
 
     @Override

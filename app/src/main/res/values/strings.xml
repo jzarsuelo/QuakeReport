@@ -17,4 +17,13 @@
     <string name="app_name">Quake Report</string>
     <string name="api_url">http://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&amp;eventtype=earthquake&amp;orderby=time&amp;minmag=6&amp;limit=10</string>
     <string name="empty_list">No earthquake found.</string>
+    <!-- Settings Menu Item [CHAR LIMIT=NONE] -->
+    <string name="settings_menu_item">Settings</string>
+    <!-- Settings Activity Title [CHAR LIMIT=NONE] -->
+    <string name="settings_title">Earthquake Settings</string>
+
+    <!-- Strings For Minimum Magnitude Preference [CHAR LIMIT=30] -->
+    <string name="settings_min_magnitude_label">Minimum Magnitude</string>
+    <string name="settings_min_magnitude_key" translatable="false">min_magnitude</string>
+    <string name="settings_min_magnitude_default" translatable="false">6</string>
 </resources>
